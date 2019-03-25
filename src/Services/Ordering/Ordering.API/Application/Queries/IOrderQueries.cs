@@ -10,8 +10,6 @@
 
         Task<IEnumerable<OrderSummary>> GetOrdersFromUserAsync(Guid userId);
 
-        Task<IEnumerable<dynamic>> GetOrdersAsync(string userId);
-
         Task<IEnumerable<CardType>> GetCardTypesAsync();
 
         Task<IEnumerable<dynamic>> GetOrderItemsAsync();
