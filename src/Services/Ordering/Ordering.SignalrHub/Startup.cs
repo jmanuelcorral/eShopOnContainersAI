@@ -165,7 +165,10 @@ namespace Ordering.SignalrHub
             eventBus.Subscribe<OrderStatusChangedToShippedIntegrationEvent, OrderStatusChangedToShippedIntegrationEventHandler>();
             eventBus.Subscribe<OrderStatusChangedToCancelledIntegrationEvent, OrderStatusChangedToCancelledIntegrationEventHandler>();
             eventBus.Subscribe<OrderStatusChangedToSubmittedIntegrationEvent, OrderStatusChangedToSubmittedIntegrationEventHandler>();
-        
+        }
+
+        private void ConfigureAuthService(IServiceCollection services)
+        {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");

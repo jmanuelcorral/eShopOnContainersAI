@@ -2,13 +2,9 @@ import { Component, OnInit }    from '@angular/core';
 import { OrdersService }        from './orders.service';
 import { IOrder }               from '../shared/models/order.model';
 import { ConfigurationService } from '../shared/services/configuration.service';
-<<<<<<< HEAD
-import { Observable } from 'rxjs/Observable';
-=======
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
->>>>>>> f7d9fc9cde9605f4e51d4e26c47f8dd002e4e76d
-import { SignalrService } from '../shared/services/signalr.service';
+import { Observable }           from 'rxjs';
+import { catchError }           from 'rxjs/operators';
+import { SignalrService }       from '../shared/services/signalr.service';
 
 @Component({
     selector: 'esh-orders',

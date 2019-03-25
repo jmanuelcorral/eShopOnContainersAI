@@ -7,7 +7,7 @@ WORKDIR /src
 COPY . .
 WORKDIR /src/src/Services/Catalog/Catalog.API
 RUN dotnet restore -nowarn:msb3202,nu1503
-RUN dotnet build --no-restore -c ${configuration} -o /app
+RUN dotnet build --no-restore -c release -o /app
 
 FROM build as unittest
 WORKDIR /src/src/Services/Catalog/Catalog.UnitTests
@@ -18,7 +18,7 @@ WORKDIR /src/src/Services/Catalog/Catalog.FunctionalTests
 FROM build AS publish
 ARG configuration
 RUN echo "Build configuration: ${configuration}"
-RUN dotnet publish --no-restore -c ${configuration} -o /app
+RUN dotnet publish --no-restore -c release -o /app
 
 FROM base AS final
 WORKDIR /app

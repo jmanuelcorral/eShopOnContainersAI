@@ -7,7 +7,7 @@ WORKDIR /src
 COPY . .
 WORKDIR /src/src/Services/Basket/Basket.API
 RUN dotnet restore -nowarn:msb3202,nu1503
-RUN dotnet build --no-restore -c ${configuration} -o /app
+RUN dotnet build --no-restore -c release -o /app
 
 FROM build as functionaltest
 WORKDIR /src/src/Services/Basket/Basket.FunctionalTests
@@ -17,7 +17,7 @@ WORKDIR /src/src/Services/Basket/Basket.UnitTests
 
 FROM build AS publish
 ARG configuration
-RUN dotnet publish --no-restore -c ${configuration} -o /app
+RUN dotnet publish --no-restore -c release -o /app
 
 FROM base AS final
 WORKDIR /app

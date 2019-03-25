@@ -41,10 +41,6 @@
 
             var buyer = await _buyerRepository.FindByIdAsync(order.GetBuyerId.Value.ToString());
 
-            var order = await _orderRepository.GetAsync(orderStatusChangedToAwaitingValidationDomainEvent.OrderId);
-
-            var buyer = await _buyerRepository.FindByIdAsync(order.GetBuyerId.Value.ToString());
-
             var orderStockList = orderStatusChangedToAwaitingValidationDomainEvent.OrderItems
                 .Select(orderItem => new OrderStockItem(orderItem.ProductId, orderItem.GetUnits()));
 

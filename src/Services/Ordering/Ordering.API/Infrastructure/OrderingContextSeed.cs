@@ -6,6 +6,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.eShopOnContainers.Services.Ordering.Domain.AggregatesModel.BuyerAggregate;
     using Microsoft.eShopOnContainers.Services.Ordering.Domain.AggregatesModel.OrderAggregate;
+    using Microsoft.eShopOnContainers.Services.Ordering.Domain.SeedWork;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Options;
     using Ordering.Infrastructure;

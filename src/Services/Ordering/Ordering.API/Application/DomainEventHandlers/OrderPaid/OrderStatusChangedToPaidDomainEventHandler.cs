@@ -42,9 +42,6 @@
             var order = await _orderRepository.GetAsync(orderStatusChangedToPaidDomainEvent.OrderId);
             var buyer = await _buyerRepository.FindByIdAsync(order.GetBuyerId.Value.ToString());
 
-            var order = await _orderRepository.GetAsync(orderStatusChangedToPaidDomainEvent.OrderId);
-            var buyer = await _buyerRepository.FindByIdAsync(order.GetBuyerId.Value.ToString());
-
             var orderStockList = orderStatusChangedToPaidDomainEvent.OrderItems
                 .Select(orderItem => new OrderStockItem(orderItem.ProductId, orderItem.GetUnits()));
 

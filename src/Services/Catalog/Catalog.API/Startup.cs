@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using global::Catalog.API.Infrastructure.Filters;
 using global::Catalog.API.IntegrationEvents;
 using Microsoft.ApplicationInsights.Extensibility;
+using Catalog.API.Extensions;
 using Microsoft.ApplicationInsights.ServiceFabric;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -59,22 +60,6 @@ namespace Microsoft.eShopOnContainers.Services.Catalog.API
 
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            services.AddAppInsight(Configuration)
-                .AddCustomMVC(Configuration)
-                .AddCustomDbContext(Configuration)
-                .AddCustomOptions(Configuration)
-                .AddIntegrationServices(Configuration)
-                .AddEventBus(Configuration)
-                .AddSwagger()
-                .AddCustomHealthCheck(Configuration);
-
-            var container = new ContainerBuilder();
-            container.Populate(services);
-            return new AutofacServiceProvider(container.Build());
-
-        }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {

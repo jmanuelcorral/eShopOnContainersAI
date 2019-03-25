@@ -374,7 +374,11 @@
         {
             if (picturePath != null)
             {
-                file.Delete();
+                DirectoryInfo directory = new DirectoryInfo(picturePath);
+                foreach (FileInfo file in directory.GetFiles())
+                {
+                    file.Delete();
+                }
             }
         }
 

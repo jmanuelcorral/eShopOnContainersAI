@@ -99,7 +99,7 @@ namespace Microsoft.eShopOnContainers.Services.Ordering.API.Controllers
         [ProducesResponseType(typeof(List<dynamic>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> OrdersByUser(string userId)
         {
-            var orderTask = _orderQueries.GetOrdersAsync(userId);
+            var orderTask = _orderQueries.GetOrdersFromUserAsync(Guid.Parse(userId));
 
             var orders = await orderTask;
 

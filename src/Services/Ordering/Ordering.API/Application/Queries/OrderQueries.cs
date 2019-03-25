@@ -43,6 +43,42 @@
             }
         }
 
+        public async Task<IEnumerable<dynamic>> GetOrdersAsync(string userId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                return await connection.QueryAsync<dynamic>(
+                    @"SELECT o.[Id] as ordernumber,o.[OrderDate] as [date],os.[Name] as [status], COALESCE(SUM(oi.units*oi.unitprice),0) as total
+                     FROM [ordering].[Orders] o
+                     INNER JOIN [ordering].[buyers] ob ON o.BuyerId = ob.Id AND ob.IdentityGuid = @userId
+                     LEFT JOIN[ordering].[orderitems] oi ON  o.Id = oi.orderid 
+                     LEFT JOIN[ordering].[orderstatus] os on o.OrderStatusId = os.Id                     
+                     GROUP BY o.[Id], o.[OrderDate], os.[Name] 
+                     ORDER BY o.[Id]"
+                    , new { userId });
+            }
+        }
+
+        public async Task<IEnumerable<dynamic>> GetOrderItemsAsync()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                return await connection.QueryAsync<dynamic>(
+                    @"  select oi.ProductId, 
+	                        ob.IdentityGuid as CustomerId, 
+	                        oi.Units
+                        from ordering.orderItems oi
+                        inner join ordering.orders oo on oi.OrderId = oo.Id
+                        inner join ordering.buyers ob on oo.BuyerId = ob.Id
+                        ");
+            }
+        }
+
+
         public async Task<IEnumerable<OrderSummary>> GetOrdersFromUserAsync(Guid userId)
         {
             using (var connection = new SqlConnection(_connectionString))

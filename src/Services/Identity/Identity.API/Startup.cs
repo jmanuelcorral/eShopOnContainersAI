@@ -56,10 +56,10 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API
 
             services.Configure<AppSettings>(Configuration);
 
-            services.AddMvc()
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddControllersAsServices();
 
-            services.AddAIServices().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddAIServices();
 
             if (Configuration.GetValue<string>("IsClusterEnv") == bool.TrueString)
             {
