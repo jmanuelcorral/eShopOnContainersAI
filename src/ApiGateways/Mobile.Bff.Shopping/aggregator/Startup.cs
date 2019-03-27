@@ -80,18 +80,19 @@ namespace Microsoft.eShopOnContainers.Mobile.Shopping.HttpAggregator
             }
             else
             {
-            app.UseHttpsRedirection();
-            app.UseMvc();
+                app.UseHttpsRedirection();
+                app.UseMvc();
 
-            app.UseSwagger().UseSwaggerUI(c =>
-           {
-               c.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "Purchase BFF V1");
+                app.UseSwagger().UseSwaggerUI(c =>
+               {
+                   c.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "Purchase BFF V1");
 
-               c.OAuthClientId("Microsoft.eShopOnContainers.Mobile.Shopping.HttpAggregatorwaggerui");
-               c.OAuthClientSecret(string.Empty);
-               c.OAuthRealm(string.Empty);
-               c.OAuthAppName("Purchase BFF Swagger UI");
-           });
+                   c.OAuthClientId("Microsoft.eShopOnContainers.Mobile.Shopping.HttpAggregatorwaggerui");
+                   c.OAuthClientSecret(string.Empty);
+                   c.OAuthRealm(string.Empty);
+                   c.OAuthAppName("Purchase BFF Swagger UI");
+               });
+            }
         }
     }
 
@@ -209,11 +210,5 @@ namespace Microsoft.eShopOnContainers.Mobile.Shopping.HttpAggregator
                 .HandleTransientHttpError()
                 .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30));
         }
-        static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
-        {
-            return HttpPolicyExtensions
-                .HandleTransientHttpError()
-                .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30));
-        }
     }
-}}
+}

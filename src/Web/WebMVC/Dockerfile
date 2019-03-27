@@ -10,7 +10,7 @@ RUN dotnet restore -nowarn:msb3202,nu1503
 
 FROM build AS publish
 ARG configuration
-RUN dotnet publish --no-restore -c ${configuration} -o /app
+RUN dotnet publish --no-restore -c release -o /app
 
 FROM base AS final
 WORKDIR /app

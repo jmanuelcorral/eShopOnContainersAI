@@ -24,6 +24,7 @@ using System.Net.Http;
 using WebMVC.Infrastructure;
 using WebMVC.Infrastructure.Middlewares;
 using WebMVC.Services;
+using Microsoft.eShopOnContainers.WebMVC.Extensions;
 
 namespace Microsoft.eShopOnContainers.WebMVC
 {
@@ -147,7 +148,8 @@ namespace Microsoft.eShopOnContainers.WebMVC
             services.AddAIServices();
 
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddControllersAsServices();
 
             services.AddSession();
 
@@ -184,6 +186,18 @@ namespace Microsoft.eShopOnContainers.WebMVC
             services.AddHttpClient<ICatalogService, CatalogService>()
                    .AddPolicyHandler(GetRetryPolicy())
                    .AddPolicyHandler(GetCircuitBreakerPolicy());
+
+            services.AddHttpClient<ICatalogAIService, CatalogAIService>()
+                  .AddPolicyHandler(GetRetryPolicy())
+                  .AddPolicyHandler(GetCircuitBreakerPolicy());
+
+            services.AddHttpClient<IProductRecommenderService, ProductRecommenderService>()
+                  .AddPolicyHandler(GetRetryPolicy())
+                  .AddPolicyHandler(GetCircuitBreakerPolicy());
+
+            services.AddHttpClient<IProductSearchImageBasedService, ProductSearchImageBasedService>()
+                  .AddPolicyHandler(GetRetryPolicy())
+                  .AddPolicyHandler(GetCircuitBreakerPolicy());
 
             services.AddHttpClient<IOrderingService, OrderingService>()
                  .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()

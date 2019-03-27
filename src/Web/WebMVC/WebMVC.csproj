@@ -53,6 +53,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\lib\" />
     <None Include="ViewModels\CampaignItem.cs" />
     <Folder Include="Views\Shared\Components\RecommendationList\" />
   </ItemGroup>

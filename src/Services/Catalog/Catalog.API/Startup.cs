@@ -48,6 +48,7 @@ namespace Microsoft.eShopOnContainers.Services.Catalog.API
         {
             services.AddAppInsight(Configuration)
                 .AddCustomMVC(Configuration)
+                .AddCustomHealthCheck(Configuration)
                 .AddCustomDbContext(Configuration)
                 .AddCustomOptions(Configuration)
                 .AddIntegrationServices(Configuration)

@@ -96,6 +96,18 @@
       "UpstreamPathTemplate": "/basket-api/{everything}",
       "UpstreamHttpMethod": []
     },
+   {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/catalog-api/{everything}",
+      "UpstreamHttpMethod": []
+    },
     {
       "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "http",
@@ -106,18 +118,8 @@
         }
       ],
       "UpstreamPathTemplate": "/payment-api/{everything}",
-          "Host": "catalog.api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/catalog-api/{everything}",
       "UpstreamHttpMethod": []
-    },
-
-    //
-    // AI Gateway API routing
-    //
-    {
+    },{
       "DownstreamPathTemplate": "/api/{version}/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -128,7 +130,19 @@
       ],
       "UpstreamPathTemplate": "/catalog-ai-api/{version}/{everything}",
       "UpstreamHttpMethod": []
-    }
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ordering.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ordering-ai-api/{version}/{everything}",
+      "UpstreamHttpMethod": []
 
     },
     {
